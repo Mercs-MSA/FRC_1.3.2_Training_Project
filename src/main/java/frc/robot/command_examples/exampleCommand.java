@@ -5,14 +5,22 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
+import edu.wpi.first.wpilibj.RobotController;
 
 public class exampleCommand extends Command {
 
   private final Intake m_intake;
+  private final double execution_timer;
 
+   /**
+  * Commands the intake forward for a set amount of time then stops it
+  * 
+  * @param intake passes control of the intake subsystem to the command temporarily
+  */
   public exampleCommand(Intake intake) {
     addRequirements();
     m_intake = intake;
+    execution_timer = RobotController.getFPGATime();
   }
 
   @Override
@@ -33,13 +41,12 @@ public class exampleCommand extends Command {
       Commands.print("Intake Example Command 1 was interrupted");
     }
     SmartDashboard.putBoolean("Intake Example Command 1 Complete", true);
-
     m_intake.setIntakeMotorStop();
   }
 
   @Override
   public boolean isFinished() {
-    if (m_intake.getIntakeMotorSpeed() > Constants.IntakeConstants.velocityCommandLimit) {
+    if ((RobotController.getFPGATime() - execution_timer) > Constants.IntakeConstants.intakeCommandDuration) {
       return true;
     }
     else {

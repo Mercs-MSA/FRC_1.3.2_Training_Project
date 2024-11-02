@@ -21,6 +21,6 @@ public final class Constants {
         public static double kStatorCurrentLimit = 40;
         public static NeutralModeValue kNeutralMode = NeutralModeValue.Brake;
 
-        public static double velocityCommandLimit = 50.0;
+        public static double intakeCommandDuration = 4000;   // this is in microseconds; so 4 seconds
     }
 }
