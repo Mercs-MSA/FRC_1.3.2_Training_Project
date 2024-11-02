@@ -25,8 +25,8 @@ public class exampleCommand extends Command {
 
   @Override
   public void initialize() {
-    SmartDashboard.putBoolean("Intake Example Command 1 Complete", false);
-    SmartDashboard.putBoolean("Intake Example Command 1 Interrupted", false);
+    SmartDashboard.putBoolean("Intake Command Complete", false);
+    SmartDashboard.putBoolean("Intake Command Interrupted", false);
     m_intake.setIntakeMotorRunningForward();
   }
 
@@ -37,10 +37,10 @@ public class exampleCommand extends Command {
   @Override
   public void end(boolean interrupted) {
     if (interrupted) {
-      SmartDashboard.putBoolean("Intake Example Command 1 Interrupted", true);
+      SmartDashboard.putBoolean("Intake Command Interrupted", true);
       Commands.print("Intake Example Command 1 was interrupted");
     }
-    SmartDashboard.putBoolean("Intake Example Command 1 Complete", true);
+    SmartDashboard.putBoolean("Intake Command Complete", true);
     m_intake.setIntakeMotorStop();
   }
 
